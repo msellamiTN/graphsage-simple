@@ -68,7 +68,7 @@ def run_cora():
     num_nodes = 2708
     feat_data, labels, adj_lists = load_cora()
     features = nn.Embedding(2708, 1433)
-    features.weight = nn.Parameter(torch.FloatTensor(feat_data), requires_grad=False)
+    features.weight = nn.Parameter(torch.FloatTensor(feat_data), requires_grad=False)  # no gradient tracking
    # features.cuda()
 
     agg1 = MeanAggregator(features, cuda=True)
