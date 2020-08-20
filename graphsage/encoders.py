@@ -26,8 +26,9 @@ class Encoder(nn.Module):
         self.embed_dim = embed_dim
         self.cuda = cuda
         self.aggregator.cuda = cuda
-        self.weight = nn.Parameter(
-                torch.FloatTensor(embed_dim, self.feat_dim if self.gcn else 2 * self.feat_dim))
+        # self.weight is a matrix  for linear projection
+        self.weight = nn.Parameter(  # making it the module's parameter, Parameter is a subclass of Tensor
+                torch.FloatTensor(embed_dim, self.feat_dim if self.gcn else 2 * self.feat_dim))  # FloatTensor, tensor of float type
         init.xavier_uniform(self.weight)
 
     def forward(self, nodes):
